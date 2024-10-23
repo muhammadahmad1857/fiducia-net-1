@@ -1,12 +1,16 @@
 "use client";
-import { testimonialsData } from "@/data/testimonials";
 import { Navigation } from "swiper/modules";
 import Link from "next/link";
 import Image from "next/image";
-
+import { PortableText } from "@portabletext/react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { fetchData } from "@/data/sanityData";
+import { urlFor } from "@/sanity/lib/image";
 
-export default function Testimonials() {
+export default async function Testimonials() {
+  const testimonialsData = await fetchData("reviews");
+  console.log(testimonialsData);
+
   return (
     <section className="testimonial-area space fix">
       <div className="container">
@@ -29,8 +33,8 @@ export default function Testimonials() {
                     width="28"
                     height="12"
                   />
-                </span>{' '}
-                Testimonials{' '}
+                </span>{" "}
+                Testimonials{" "}
                 <span className="ms-1">
                   <Image
                     alt="icon"
@@ -87,23 +91,28 @@ export default function Testimonials() {
               className="gt-slider"
               id="testimonialSlider1"
             >
-              {testimonialsData.map((testimonial) => (
-                <SwiperSlide key={testimonial.id}>
+              {testimonialsData.map((testimonial, index) => (
+                <SwiperSlide key={index}>
                   <div className="testimonial-card style1">
                     <div className="profile-box">
                       <div className="testi-thumb">
-                        <Image
-                          src={testimonial.imgSrc}
-                          width={100}
-                          height={100}
-                          alt="thumb"
-                        />
+                        {testimonial.image?.asset?._ref ? (
+                          <Image
+                            src={urlFor(testimonial.image.asset._ref).url()}
+                            width={100}
+                            height={100}
+                            alt="thumb"
+                          />
+                        ) : (
+                          <div className="avatar">
+                            <span>
+                              {testimonial.userName.charAt(0).toUpperCase()}
+                            </span>
+                          </div>
+                        )}
                       </div>
                       <div className="testi-content">
-                        <h3 className="title">{testimonial.name}</h3>
-                        <div className="designation">
-                          {testimonial.designation}
-                        </div>
+                        <h3 className="title">{testimonial.userName}</h3>
                         <ul className="star-wrap">
                           {Array(5)
                             .fill()
@@ -120,7 +129,9 @@ export default function Testimonials() {
                         </ul>
                       </div>
                     </div>
-                    <p className="text">{testimonial.text}</p>
+                    <div className="text">
+                      <PortableText value={testimonial.review} />
+                    </div>
                     <div className="quote">
                       <Image
                         alt="icon"

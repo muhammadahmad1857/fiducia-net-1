@@ -33,7 +33,7 @@ export default function Services2() {
                 <Link
                   scroll={false}
                   className="link"
-                  href={`/service-details/${item.id}`}
+                  href={`/services/service-details/${item.id}`}
                 >
                   Read More{" "}
                   <i className="fa-sharp fa-light fa-arrow-right-long" />

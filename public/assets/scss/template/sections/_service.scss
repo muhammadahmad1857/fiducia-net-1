@@ -342,12 +342,26 @@
       opacity: 0;
       visibility: hidden;
       z-index: 1;
-      transition: max-height 0.8s ease, opacity 1s ease, visibility 1s ease;
-      -webkit-transition: max-height 0.8s ease, opacity 1s ease,
+      transition:
+        max-height 0.8s ease,
+        opacity 1s ease,
         visibility 1s ease;
-      -moz-transition: max-height 0.8s ease, opacity 1s ease, visibility 1s ease;
-      -ms-transition: max-height 0.8s ease, opacity 1s ease, visibility 1s ease;
-      -o-transition: max-height 0.8s ease, opacity 1s ease, visibility 1s ease;
+      -webkit-transition:
+        max-height 0.8s ease,
+        opacity 1s ease,
+        visibility 1s ease;
+      -moz-transition:
+        max-height 0.8s ease,
+        opacity 1s ease,
+        visibility 1s ease;
+      -ms-transition:
+        max-height 0.8s ease,
+        opacity 1s ease,
+        visibility 1s ease;
+      -o-transition:
+        max-height 0.8s ease,
+        opacity 1s ease,
+        visibility 1s ease;
     }
 
     &:hover {
@@ -463,14 +477,25 @@
           font-style: normal;
           font-weight: 700;
           line-height: 32px;
-          transition: 1s, -webkit-background-clip 1s, -webkit-text-fill-color 1s;
-          -webkit-transition: 1s, -webkit-background-clip 1s,
+          transition:
+            1s,
+            -webkit-background-clip 1s,
             -webkit-text-fill-color 1s;
-          -moz-transition: 1s, -webkit-background-clip 1s,
+          -webkit-transition:
+            1s,
+            -webkit-background-clip 1s,
             -webkit-text-fill-color 1s;
-          -ms-transition: 1s, -webkit-background-clip 1s,
+          -moz-transition:
+            1s,
+            -webkit-background-clip 1s,
             -webkit-text-fill-color 1s;
-          -o-transition: 1s, -webkit-background-clip 1s,
+          -ms-transition:
+            1s,
+            -webkit-background-clip 1s,
+            -webkit-text-fill-color 1s;
+          -o-transition:
+            1s,
+            -webkit-background-clip 1s,
             -webkit-text-fill-color 1s;
 
           &:hover {
@@ -577,7 +602,7 @@
     justify-content: flex-start;
     padding: 36px 36px;
     max-width: 270px;
-    max-height: 303px;
+    max-height: 1000px;
     margin: 0 auto;
     background-color: $white-color;
     box-shadow: 0px 4px 25px 0px rgba(56, 75, 255, 0.08);

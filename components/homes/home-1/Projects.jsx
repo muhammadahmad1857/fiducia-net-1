@@ -1,14 +1,19 @@
 "use client";
-import { projects1 } from "@/data/projects";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Link from "next/link";
 import Image from "next/image";
+import { urlFor } from "@/sanity/lib/image";
+import { fetchData } from "@/data/sanityData";
+import { useEffect, useState } from "react";
 
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
 export default function Projects() {
+  const [projects, setProjects] = useState([]);
   const swiperOptions = {
     loop: true,
-
     breakpoints: {
       0: { slidesPerView: 1 },
       576: { slidesPerView: 1, centeredSlides: true },
@@ -22,6 +27,21 @@ export default function Projects() {
       nextEl: ".snbn1",
     },
   };
+
+  useEffect(() => {
+    const fetchProjectsData = async () => {
+      try {
+        console.log("Fetching projects data...");
+        const data = await fetchData("projects");
+        console.log("Fetched projects data:", data);
+        setProjects(data);
+      } catch (error) {
+        console.error("Error fetching projects data:", error);
+      }
+    };
+
+    fetchProjectsData();
+  }, []);
 
   return (
     <section className="project-area">
@@ -96,15 +116,15 @@ export default function Projects() {
               id="projectSlider1"
               {...swiperOptions}
             >
-              {projects1.map((slide) => (
-                <SwiperSlide className="swiper-slide" key={slide.id}>
+              {projects?.map((slide) => (
+                <SwiperSlide className="swiper-slide" key={slide.slug.current}>
                   <div className="project-card style1 img-shine">
                     <div className="project-img">
                       <Image
-                        src={slide.imgSrc}
+                        src={urlFor(slide.image.asset._ref).url()}
                         width={465}
                         height={450}
-                        alt="project image"
+                        alt={slide.projectName}
                       />
                     </div>
                     <div className="fancy-box style2">
@@ -112,14 +132,14 @@ export default function Projects() {
                       <h4>
                         <Link
                           scroll={false}
-                          href={`/project-details/${slide.id}`}
+                          href={`/projects/project-details/${slide.slug.current}`}
                         >
-                          {slide.title}
+                          {slide.projectName}
                         </Link>
                       </h4>
                       <Link
                         scroll={false}
-                        href={`/project-details/${slide.id}`}
+                        href={`/projects/project-details/${slide.slug.current}`}
                         className="arrow-icon"
                       >
                         <i className="fa-solid fa-arrow-right"></i>

@@ -4,30 +4,15 @@ import HeaderTop from "@/components/headers/HeaderTop";
 import Cta from "@/components/common/Cta";
 import ServiceDetails from "@/components/otherPages/service/ServiceDetails";
 import Link from "next/link";
-import { client } from "@/sanity/lib/client";
+import { fetchData } from "@/data/sanityData";
 export const metadata = {
   title:
     "Service Details|| Techbe-IT Solution & Technology Service Nextjs Template",
   description: "Techbe-IT Solution & Technology Service Nextjs Template",
 };
 
-const fetchServices = async () => {
-  const data = await client.fetch(
-    `*[_type == "services"]  {
-  slug { current },
-  serviceName,
-  description,
-  icon { asset },
-}`,
-    {},
-    { cache: "no-store" }
-  );
-  // console.log("original", data);
-  return data;
-};
-
 export default async function Page({ params }) {
-  const allService = await fetchServices();
+  const allService = await fetchData("services");
   console.log(allService);
   console.log(params);
   const serviceItem =
@@ -63,13 +48,16 @@ export default async function Page({ params }) {
                   <li>
                     <i className="fas fa-chevrons-right" />
                   </li>
-                  <li>Services Details</li>
+                  <li>{serviceItem.serviceName}</li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
-        <ServiceDetails serviceItem={serviceItem} serviceCategory={allService} />
+        <ServiceDetails
+          serviceItem={serviceItem}
+          serviceCategory={allService}
+        />
         <Cta />
       </main>
       <Footer1 />

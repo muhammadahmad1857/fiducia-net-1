@@ -1,9 +1,11 @@
-import { servicesStyle2 } from "@/data/services";
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { urlFor } from "@/sanity/lib/image";
+import { fetchData } from "@/data/sanityData";
 
-export default function Services2() {
+export default async function Services2() {
+  const services = await fetchData("services");
   return (
     <section
       className="service-area space mt-1 fix"
@@ -22,8 +24,8 @@ export default function Services2() {
                 width="28"
                 height="12"
               />
-            </span>{' '}
-            Our Feathered Services{' '}
+            </span>{" "}
+            Our Feathered Services{" "}
             <span>
               <Image
                 alt="icon"
@@ -41,16 +43,16 @@ export default function Services2() {
           </h2>
         </div>
         <div className="service-card-wrapper style2">
-          {servicesStyle2.map((service, index) => (
+          {services.map((service, index) => (
             <div
               className="service-card style2 wow fadeInUp"
-              data-wow-delay={service.delay}
+              // data-wow-delay={service.delay}
               key={index}
             >
               <div className="service-thumb">
                 <Image
                   className="img-shine"
-                  src={service.thumb}
+                  src={urlFor(service.icon.asset._ref).url()}
                   width={270}
                   height={160}
                   alt="thumb"
@@ -58,7 +60,10 @@ export default function Services2() {
               </div>
               <div className="service-content">
                 <h3 className="service-content_title">
-                  <Link scroll={false} href={`/service-details/${service.id}`}>
+                  <Link
+                    scroll={false}
+                    href={`/services/service-details/${service.serviceName}`}
+                  >
                     {service.title}
                   </Link>
                 </h3>
@@ -66,18 +71,23 @@ export default function Services2() {
                 <Link
                   scroll={false}
                   className="link"
-                  href={`/service-details/${service.id}`}
+                  href={`/services/service-details/${service.slug.current}`}
                 >
                   Read More
                   <i className="fa-sharp fa-light fa-arrow-right-long" />
                 </Link>
               </div>
               <div className="service-icon">
-                <Image src={service.icon} width={40} height={40} alt="icon" />
+                <Image
+                  src={urlFor(service.icon.asset._ref).url()}
+                  width={40}
+                  height={40}
+                  alt="icon"
+                />
               </div>
               <div className="service-icon_two">
                 <Image
-                  src={service.iconTwo}
+                  src={urlFor(service.icon.asset._ref).url()}
                   width={50}
                   height={50}
                   alt="icon"

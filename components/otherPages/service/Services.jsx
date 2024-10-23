@@ -1,9 +1,12 @@
-import { serviceItems } from "@/data/services";
+// import { serviceItems } from "@/data/services";
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { fetchData } from "@/data/sanityData";
+import { urlFor } from "@/sanity/lib/image";
 
-export default function Services() {
+export default async function Services() {
+  const serviceItems = await fetchData("services");
   return (
     <section className="all-services-area space-top">
       <div className="container">
@@ -18,24 +21,38 @@ export default function Services() {
             >
               <div
                 className={`service-card style3 ${index === 7 ? "mb-0" : ""}`}
+                style={{
+                  maxHeight: "fit-content",
+                }}
               >
                 <div className="card_icon">
-                  <Image src={item.imgSrc} width={40} height={40} alt="icon" />
+                  <Image
+                    src={urlFor(item.icon.asset._ref).url()}
+                    width={40}
+                    height={40}
+                    alt="icon"
+                  />
                 </div>
                 <div className="card_content">
                   <h3>
                     <Link
                       scroll={false}
-                      href={`/service-details/${item.id}`}
+                      href={`/services/service-details/${item.slug.current}`}
                       className="title"
                     >
                       {item.title}
                     </Link>
                   </h3>
-                  <p className="text">{item.text}</p>
+                  <p className="text">
+                    {item.description.slice(0, 50)}
+                    {item.description.length > 50 && "..."}
+                  </p>
                 </div>
                 <div className="link-wrap">
-                  <Link scroll={false} href={`/service-details/${item.id}`}>
+                  <Link
+                    scroll={false}
+                    href={`/services/service-details/${item.slug.current}`}
+                  >
                     More Details
                   </Link>
                 </div>

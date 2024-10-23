@@ -33,7 +33,9 @@ export default function ServiceDetails({ serviceItem, serviceCategory }) {
                                 : ""
                             }
                           >
-                            <a href={`#`}>
+                            <a
+                              href={`/services/service-details/${item.slug.current}`}
+                            >
                               {item.serviceName}
                               <span>
                                 <i className="fa-light fa-arrow-right-long" />

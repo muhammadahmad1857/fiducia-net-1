@@ -34,10 +34,10 @@ export default {
       type: "color",
       title: "Color",
     },
-    // {
-    //   name: "bgImage",
-    //   type: "image",
-    //   title: "Background Image",
-    // },
+    {
+      name: "thumb",
+      type: "image",
+      title: "Thumbnail",
+    },
   ],
 };

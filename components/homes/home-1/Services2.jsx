@@ -52,7 +52,7 @@ export default async function Services2() {
               <div className="service-thumb">
                 <Image
                   className="img-shine"
-                  src={urlFor(service.icon.asset._ref).url()}
+                  src={urlFor(service.thumb.asset._ref).url()}
                   width={270}
                   height={160}
                   alt="thumb"

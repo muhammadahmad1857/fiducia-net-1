@@ -26,7 +26,7 @@ export const menuItems = [
     href: "#",
     subMenu: [
       {
-        title: "Project Page",
+        title: "Project",
         href: "/project",
         // subMenu: [
         //   { title: "Project", href: "/project" },
@@ -34,7 +34,7 @@ export const menuItems = [
         // ],
       },
       {
-        title: "Team Page",
+        title: "Team",
         href: "/team",
         // subMenu: [
         //   { title: "Team One", href: "/team-1" },
@@ -42,9 +42,9 @@ export const menuItems = [
         //   { title: "Team Details", href: "/team-details/1" },
         // ],
       },
-      { title: "Pricing Page", href: "/pricing" },
+      { title: "Pricing", href: "/pricing" },
       { title: "FAQ'S", href: "/faq" },
-      { title: "Error Page", href: "/error" },
+      // { title: "Error Page", href: "/error" },
     ],
   },
   {

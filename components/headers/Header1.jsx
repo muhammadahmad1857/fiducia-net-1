@@ -22,7 +22,7 @@ export default function Header1() {
                         maxWidth: "auto",
                         maxHeight: "auto",
                       }}
-                      src="/assets/img/logo.gif"
+                      src="/fiducia-logo.gif"
                       width={199}
                       height={42}
                       alt="Fiducia logo"

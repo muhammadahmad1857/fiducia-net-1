@@ -24,6 +24,7 @@ export default async function Hero() {
                 className="gt-hero-bg"
                 style={{
                   backgroundImage: `url(${urlFor(slide.bgSrc.asset._ref).url()})`,
+                  
                 }}
               />
               <div className="container">
@@ -37,7 +38,7 @@ export default async function Hero() {
                       >
                         <Image
                           className="me-1"
-                          src={'/assets/img/icon/titleIconWhite.png'}
+                          src={"/assets/img/icon/titleIconWhite.png"}
                           width={28}
                           height={12}
                           alt="icon"

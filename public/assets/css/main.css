@@ -2889,7 +2889,9 @@ textarea.is-invalid {
   left: 0;
   transform-origin: 50% 0;
   transform: scale(0.75) translateY(-28px);
-  transition: all 0.2s cubic-bezier(0.5, 0, 0, 1.25), opacity 0.15s ease-out;
+  transition:
+    all 0.2s cubic-bezier(0.5, 0, 0, 1.25),
+    opacity 0.15s ease-out;
   z-index: 9;
 }
 .nice-select .list:hover .option:not(:hover) {
@@ -3325,7 +3327,8 @@ textarea.is-invalid {
   height: 15px;
   border-radius: 100%;
   z-index: 999999;
-  transition: 0.6s cubic-bezier(0.75, -1.27, 0.3, 2.33) transform,
+  transition:
+    0.6s cubic-bezier(0.75, -1.27, 0.3, 2.33) transform,
     0.2s cubic-bezier(0.75, -0.27, 0.3, 1.33) opacity,
     0.2s cubic-bezier(0.75, -0.27, 0.3, 1.33) background;
   -webkit-user-select: none;
@@ -6200,6 +6203,9 @@ textarea.is-invalid {
   position: absolute;
   inset: 0;
   z-index: -1;
+  -o-object-fit: cover;
+  object-fit: cover;
+  
 }
 .gt-hero-bg img {
   height: 100%;
@@ -6207,6 +6213,7 @@ textarea.is-invalid {
   -o-object-fit: cover;
   object-fit: cover;
   background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* Hero 1 ---------------------------------- */
@@ -6323,7 +6330,7 @@ textarea.is-invalid {
   animation: scalein 20s infinite;
   -webkit-animation: scalein 20s infinite;
 }
-.hero-1 .hero-slider1 .hero-inner .gt-hero-bg:after {
+.hero-1 .hero-slider1 .hero-inner :after {
   content: "";
   position: absolute;
   top: 0;
@@ -8279,11 +8286,26 @@ textarea.is-invalid {
   opacity: 0;
   visibility: hidden;
   z-index: 1;
-  transition: max-height 0.8s ease, opacity 1s ease, visibility 1s ease;
-  -webkit-transition: max-height 0.8s ease, opacity 1s ease, visibility 1s ease;
-  -moz-transition: max-height 0.8s ease, opacity 1s ease, visibility 1s ease;
-  -ms-transition: max-height 0.8s ease, opacity 1s ease, visibility 1s ease;
-  -o-transition: max-height 0.8s ease, opacity 1s ease, visibility 1s ease;
+  transition:
+    max-height 0.8s ease,
+    opacity 1s ease,
+    visibility 1s ease;
+  -webkit-transition:
+    max-height 0.8s ease,
+    opacity 1s ease,
+    visibility 1s ease;
+  -moz-transition:
+    max-height 0.8s ease,
+    opacity 1s ease,
+    visibility 1s ease;
+  -ms-transition:
+    max-height 0.8s ease,
+    opacity 1s ease,
+    visibility 1s ease;
+  -o-transition:
+    max-height 0.8s ease,
+    opacity 1s ease,
+    visibility 1s ease;
 }
 .team-card.style1 .bg img {
   width: 100%;
@@ -10459,7 +10481,7 @@ textarea.is-invalid {
   -o-border-radius: 30px;
   display: flex;
   align-items: center;
-  justify-content:flex-end;
+  justify-content: flex-end;
   gap: 47px;
   /* Large devices */
   /* Medium devices */
@@ -10931,11 +10953,26 @@ textarea.is-invalid {
   opacity: 0;
   visibility: hidden;
   z-index: 1;
-  transition: max-height 0.8s ease, opacity 1s ease, visibility 1s ease;
-  -webkit-transition: max-height 0.8s ease, opacity 1s ease, visibility 1s ease;
-  -moz-transition: max-height 0.8s ease, opacity 1s ease, visibility 1s ease;
-  -ms-transition: max-height 0.8s ease, opacity 1s ease, visibility 1s ease;
-  -o-transition: max-height 0.8s ease, opacity 1s ease, visibility 1s ease;
+  transition:
+    max-height 0.8s ease,
+    opacity 1s ease,
+    visibility 1s ease;
+  -webkit-transition:
+    max-height 0.8s ease,
+    opacity 1s ease,
+    visibility 1s ease;
+  -moz-transition:
+    max-height 0.8s ease,
+    opacity 1s ease,
+    visibility 1s ease;
+  -ms-transition:
+    max-height 0.8s ease,
+    opacity 1s ease,
+    visibility 1s ease;
+  -o-transition:
+    max-height 0.8s ease,
+    opacity 1s ease,
+    visibility 1s ease;
 }
 .service-card.style1:hover .bg {
   max-height: 100vh;
@@ -11032,11 +11069,26 @@ textarea.is-invalid {
   font-style: normal;
   font-weight: 700;
   line-height: 32px;
-  transition: 1s, -webkit-background-clip 1s, -webkit-text-fill-color 1s;
-  -webkit-transition: 1s, -webkit-background-clip 1s, -webkit-text-fill-color 1s;
-  -moz-transition: 1s, -webkit-background-clip 1s, -webkit-text-fill-color 1s;
-  -ms-transition: 1s, -webkit-background-clip 1s, -webkit-text-fill-color 1s;
-  -o-transition: 1s, -webkit-background-clip 1s, -webkit-text-fill-color 1s;
+  transition:
+    1s,
+    -webkit-background-clip 1s,
+    -webkit-text-fill-color 1s;
+  -webkit-transition:
+    1s,
+    -webkit-background-clip 1s,
+    -webkit-text-fill-color 1s;
+  -moz-transition:
+    1s,
+    -webkit-background-clip 1s,
+    -webkit-text-fill-color 1s;
+  -ms-transition:
+    1s,
+    -webkit-background-clip 1s,
+    -webkit-text-fill-color 1s;
+  -o-transition:
+    1s,
+    -webkit-background-clip 1s,
+    -webkit-text-fill-color 1s;
 }
 .service-card.style2 .service-content_title a:hover {
   background: linear-gradient(90deg, #384bff 0%, #b42af3 123.82%);

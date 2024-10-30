@@ -18,10 +18,10 @@ export default function Header2() {
                 <div className="header-logo">
                   <Link scroll={false} href={`/`}>
                     <Image
-                      src="/assets/img/logo-white.png"
+                      src="/fiducia-logo.gif"
                       width={199}
                       height={42}
-                      alt="techo"
+                      alt="Fiducia net"
                     />
                   </Link>
                 </div>

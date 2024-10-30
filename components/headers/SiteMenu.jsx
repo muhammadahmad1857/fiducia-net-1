@@ -80,8 +80,8 @@ export default function SiteMenu() {
             <div className="about-logo">
               <Link href="/">
                 <Image
-                  alt="techo"
-                  src="/assets/img/logo-dark.png"
+                  alt="Fiducia-net"
+                  src="/fiducia-logo.gif"
                   width="199"
                   height="42"
                 />

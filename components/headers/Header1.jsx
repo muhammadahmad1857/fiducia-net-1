@@ -13,7 +13,10 @@ export default function Header1() {
         {/* Main Menu Area */}
         <div className="menu-area">
           <div className="container">
-            <div className="row align-items-center justify-content-between">
+            <div
+              className="row align-items-center justify-content-between"
+             id="mains"
+            >
               <div className="col-auto">
                 <div className="header-logo">
                   <Link scroll={false} href={`/`}>

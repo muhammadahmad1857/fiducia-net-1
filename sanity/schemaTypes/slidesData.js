@@ -1,0 +1,37 @@
+export default {
+  name: "slidesData",
+  title: "Slides Data",
+  type: "document",
+  fields: [
+    {
+      name: "bgSrc",
+      title: "Background Image",
+      type: "image",
+      description: "The background image for this slide",
+    },
+    {
+      name: "titleIconSrc",
+      title: "Title Icon",
+      type: "image",
+      description: "The icon for the title of this slide",
+    },
+    {
+      name: "title1",
+      title: "Title1",
+      type: "string",
+      description: "The title for this slide",
+    },
+    {
+      name: "title2",
+      title: "Title2",
+      type: "string",
+      description: "The subtitle for this slide",
+    },
+    {
+      name: "subtitle",
+      title: "Subtitle",
+      type: "string",
+      description: "The subtitle for this slide",
+    }
+  ],
+};

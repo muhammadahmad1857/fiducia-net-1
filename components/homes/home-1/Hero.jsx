@@ -1,10 +1,13 @@
 "use client";
 import { SwiperSlide, Swiper } from "swiper/react";
 import { EffectFade } from "swiper/modules";
-import { slidesData } from "@/data/heroSlides";
 import Link from "next/link";
 import Image from "next/image";
-export default function Hero() {
+import { fetchData } from "@/data/sanityData";
+import { urlFor } from "@/sanity/lib/image";
+export default async function Hero() {
+  const slidesData = await fetchData("slidesData");
+
   return (
     <section className="hero-1" id="hero">
       <Swiper
@@ -15,11 +18,13 @@ export default function Hero() {
         autoHeight
       >
         {slidesData.map((slide) => (
-          <SwiperSlide className="swiper-slide" key={slide.id}>
+          <SwiperSlide className="swiper-slide" key={slide._id}>
             <div className="hero-inner">
               <div
                 className="gt-hero-bg"
-                style={{ backgroundImage: `url(${slide.bgSrc})` }}
+                style={{
+                  backgroundImage: `url(${urlFor(slide.bgSrc.asset._ref).url()})`,
+                }}
               />
               <div className="container">
                 <div className="row align-items-center">

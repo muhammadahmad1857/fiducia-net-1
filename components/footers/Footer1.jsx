@@ -77,7 +77,7 @@ export default function Footer1() {
                     <div className="about-logo">
                       <Link scroll={false} href={`/`}>
                         <Image
-                          src="/assets/img/logo-white.png"
+                          src="/fiducia-logo.gif"
                           width={199}
                           height={42}
                           alt="Realar"

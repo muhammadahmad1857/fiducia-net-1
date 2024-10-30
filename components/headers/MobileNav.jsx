@@ -77,8 +77,8 @@ export default function MobileNav() {
         <div className="mobile-logo">
           <Link scroll={false} href="/">
             <Image
-              alt="techo"
-              src="/assets/img/logo-dark.png"
+              alt="Fiducia-net"
+              src="/fiducia-logo.gif"
               width="199"
               height="42"
             />

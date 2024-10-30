@@ -9,12 +9,7 @@ export default {
       type: "image",
       description: "The background image for this slide",
     },
-    {
-      name: "titleIconSrc",
-      title: "Title Icon",
-      type: "image",
-      description: "The icon for the title of this slide",
-    },
+   
     {
       name: "title1",
       title: "Title1",

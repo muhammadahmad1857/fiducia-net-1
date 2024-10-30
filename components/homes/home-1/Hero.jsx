@@ -37,7 +37,7 @@ export default async function Hero() {
                       >
                         <Image
                           className="me-1"
-                          src={slide.titleIconSrc}
+                          src={'/assets/img/icon/titleIconWhite.png'}
                           width={28}
                           height={12}
                           alt="icon"

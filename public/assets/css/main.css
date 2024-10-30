@@ -6206,6 +6206,7 @@ textarea.is-invalid {
   width: 100%;
   -o-object-fit: cover;
   object-fit: cover;
+  background-repeat: no-repeat;
 }
 
 /* Hero 1 ---------------------------------- */

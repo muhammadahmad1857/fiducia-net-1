@@ -9,7 +9,7 @@ export default {
       type: "image",
       description: "The background image for this slide",
     },
-   
+
     {
       name: "title1",
       title: "Title1",
@@ -27,6 +27,12 @@ export default {
       title: "Subtitle",
       type: "string",
       description: "The subtitle for this slide",
-    }
+    },
+    {
+      name: "text",
+      title: "Text",
+      type: "string",
+      description: "The text for this slide",
+    },
   ],
 };

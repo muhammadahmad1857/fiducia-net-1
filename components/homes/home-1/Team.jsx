@@ -2,8 +2,11 @@ import { teamMembers2 } from "@/data/team";
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { fetchData } from "@/data/sanityData";
+import { urlFor } from "@/sanity/lib/image";
 
-export default function Team() {
+export default async function Team() {
+  const teamMembers = await fetchData("team").slice(0, 3);
   return (
     <section className="team-area space fix">
       <div className="team-wrap style1">
@@ -36,8 +39,8 @@ export default function Team() {
                   width="28"
                   height="12"
                 />
-              </span>{' '}
-              OUR TEAM MEMBER{' '}
+              </span>{" "}
+              OUR TEAM MEMBER{" "}
               <span>
                 <Image
                   alt="icon"
@@ -55,15 +58,15 @@ export default function Team() {
             </h2>
           </div>
           <div className="row team-card-wrapper style1">
-            {teamMembers2.map((member, index) => (
+            {teamMembers.map((member, index) => (
               <div
                 className="team-card style1 wow fadeInUp"
-                data-wow-delay={member.delay}
+                data-wow-delay={"0.2s"}
                 key={index}
               >
                 <div className="team-thumb">
                   <Image
-                    src={member.imgSrc}
+                    src={urlFor(member.image.asset._ref)}
                     width={275}
                     height={449}
                     alt="thumb"
@@ -71,15 +74,15 @@ export default function Team() {
                 </div>
                 <div className="profile-box">
                   <h3 className="title">
-                    <Link scroll={false} href={`/team-details/${member.id}`}>
+                    <Link scroll={false} href={`/team/${member.slug.current}`}>
                       {member.name}
                     </Link>
                   </h3>
-                  <div className="text">{member.role}</div>
+                  <div className="text">{member.position}</div>
                 </div>
                 <div className="bg">
                   <Image
-                    src={member.bgImage}
+                    src={"/assets/img/bg/teamThumbBg1_1.png"}
                     width={275}
                     height={449}
                     alt="bg"

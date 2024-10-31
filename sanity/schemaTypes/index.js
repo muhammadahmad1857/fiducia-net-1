@@ -14,7 +14,6 @@ export const schema = {
     services,
     projects,
     technologies,
-    team,
     TextSliderSchema,
     slidesData,
     blog,

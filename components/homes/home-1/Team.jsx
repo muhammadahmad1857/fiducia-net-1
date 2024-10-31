@@ -6,7 +6,7 @@ import { fetchData } from "@/data/sanityData";
 import { urlFor } from "@/sanity/lib/image";
 
 export default async function Team() {
-  const teamMembers = await fetchData("team").slice(0, 3);
+  const teamMembers = await fetchData("team");
   return (
     <section className="team-area space fix">
       <div className="team-wrap style1">
@@ -58,7 +58,7 @@ export default async function Team() {
             </h2>
           </div>
           <div className="row team-card-wrapper style1">
-            {teamMembers.map((member, index) => (
+            {teamMembers.slice(0, 3).map((member, index) => (
               <div
                 className="team-card style1 wow fadeInUp"
                 data-wow-delay={"0.2s"}

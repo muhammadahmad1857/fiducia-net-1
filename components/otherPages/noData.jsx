@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function NotFound({ title, href }) {
+export default function NoData() {
   return (
     <section className="error-area space-top pb-425 fix">
       <div className="container">
@@ -18,18 +18,19 @@ export default function NotFound({ title, href }) {
                 />
               </div>
               <h2>
-                <span>Oops! </span> {!title ? "Page" : title} not found
+                <span>Oops! We're working on it...</span>
               </h2>
               <p>
-                The {!title ? "page" : title} you are looking for does not exist
+                There's nothing to show you right now, but don't worry, we're
+                working hard to bring you the best content.
               </p>
               <Link
                 scroll={false}
-                href={!href ? "/" : `/${href}`}
+                href={"/"}
                 className="gt-btn gt-btn-icon wow fadeInUp"
                 data-wow-delay=".8s"
               >
-                Go Back {href}
+                Go Back Home
               </Link>
             </div>
           </div>

@@ -5,15 +5,28 @@ import HeaderTop from "@/components/headers/HeaderTop";
 import Cta from "@/components/common/Cta";
 import ProjectDetails from "@/components/otherPages/project/ProjectDetails";
 import Link from "next/link";
-import { allProjects } from "@/data/projects";
+import NotFound from "@/components/otherPages/NotFound";
+import { client } from "@/sanity/lib/client";
 export const metadata = {
-  title:
-    "Project Details || Techbe-IT Solution & Technology Service Nextjs Template",
-  description: "Techbe-IT Solution & Technology Service Nextjs Template",
+  title: "Project Details || Fiducia Net",
+  description: "Fiducia Net || Your technology companion",
 };
-export default function Page({ params }) {
-  const projectItem =
-    allProjects.filter((elm) => elm.id == params.id)[0] || allProjects[0];
+
+const fetchData = async () => {
+  const data = client.fetch(`*[_type=='projects']{
+    
+     "service": service->{
+        serviceName
+      },
+    ...
+  }`);
+  return data;
+};
+export default async function Page({ params }) {
+  const allProjects = await fetchData();
+  const projectItem = allProjects.filter(
+    (elm) => elm.slug.current == params.id
+  )[0];
   return (
     <>
       <HeaderTop />
@@ -28,7 +41,7 @@ export default function Page({ params }) {
             <div className="container">
               <div className="page-heading">
                 <h1 className="wow fadeInUp" data-wow-delay=".3s">
-                  {projectItem.title}
+                  {projectItem ? projectItem.projectName : "Project Not Found."}
                 </h1>
                 <ul
                   className="breadcrumb-items wow fadeInUp"
@@ -49,7 +62,11 @@ export default function Page({ params }) {
             </div>
           </div>
         </div>
-        <ProjectDetails projectItem={projectItem} />
+        {projectItem ? (
+          <ProjectDetails projectItem={projectItem} />
+        ) : (
+          <NotFound title={"Project"} href={"projects"} />
+        )}
         <Cta />
       </main>
       <Footer1 />

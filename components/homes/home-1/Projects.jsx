@@ -78,7 +78,7 @@ export default function Projects() {
                 className="title text-start text-white wow fadeInUp"
                 data-wow-delay=".6s"
               >
-                Latest projects from our Techbe
+                Latest projects from our Fiducia net 
               </h2>
             </div>
             <div

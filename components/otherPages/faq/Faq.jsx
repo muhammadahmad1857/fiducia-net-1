@@ -1,7 +1,6 @@
 import React from "react";
 import Faq1 from "./Faq1";
 import Image from "next/image";
-import Faq2 from "./Faq2";
 
 export default function Faq() {
   return (
@@ -30,20 +29,14 @@ export default function Faq() {
           <h2 className="title text-center mb-50">Frequently Questions</h2>
         </div>
         <div className="row">
-          <div className="col-lg-6">
+          <div className="col-lg-12">
             <div className="faq-content style-3">
               <div className="faq-accordion">
                 <Faq1 />
               </div>
             </div>
           </div>
-          <div className="col-lg-6">
-            <div className="faq-content style-3">
-              <div className="faq-accordion">
-                <Faq2 />
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
     </section>

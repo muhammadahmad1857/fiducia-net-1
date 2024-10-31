@@ -1,12 +1,11 @@
-"use client";
 import { fancyBoxes } from "@/data/features";
 import Link from "next/link";
 import Image from "next/image";
-import ModalVideo from "react-modal-video";
-import { useState } from "react";
+// import ModalVideo from "react-modal-video";
+// import { useState } from "react";
 
 export default function About() {
-  const [isOpen, setOpen] = useState(false);
+  // const [isOpen, setOpen] = useState(false);
   return (
     <>
       <section className="about-area space fix position-reltive">
@@ -36,12 +35,17 @@ export default function About() {
                 <div className="about-thumb-box about-thumb1">
                   <Image
                     alt="thumb"
-                    src="/assets/img/about/aboutThumb1_1.png"
+                    src="/assets/img/about/about-img-thumb.jpg"
                     width="439"
                     height="483"
+                    style={{
+                      minWidth: "auto",
+                      minHeight: "483px",
+                      objectFit: "cover",
+                    }}
                   />
                 </div>
-                <div className="about-thumb-box about-thumb2">
+                {/* <div className="about-thumb-box about-thumb2">
                   <Image
                     alt="thumb"
                     src="/assets/img/about/aboutThumb1_2.png"
@@ -54,7 +58,7 @@ export default function About() {
                   >
                     <i className="fa-sharp fa-solid fa-play" />
                   </a>
-                </div>
+                </div> */}
                 <div className="about-thumb-box counter-box style1 movingX">
                   <div className="about-thumb-box counter-box_icon">
                     <Image
@@ -66,7 +70,7 @@ export default function About() {
                   </div>
                   <div className="about-thumb-box counter-box_counter">
                     <div>
-                      <span className="counter-number">6,561</span>
+                      <span className="counter-number">100</span>
                       <span className="plus">+</span>
                     </div>
                     <span>Satisfied Clients</span>
@@ -87,8 +91,8 @@ export default function About() {
                         width="28"
                         height="12"
                       />
-                    </span>{' '}
-                    What We Do{' '}
+                    </span>{" "}
+                    What We Do{" "}
                     <span>
                       <Image
                         alt="icon"
@@ -143,8 +147,8 @@ export default function About() {
                       />
                     </div>
                     <div className="fancy-box_content">
-                      <h4>Ronald Richards</h4>
-                      <span>Co, Founder</span>
+                      <h4>Shoaib Ahmed</h4>
+                      <span> Founder</span>
                     </div>
                   </div>
                 </div>
@@ -153,13 +157,6 @@ export default function About() {
           </div>
         </div>
       </section>{" "}
-      <ModalVideo
-        channel="youtube"
-        youtube={{ mute: 0, autoplay: 0 }}
-        isOpen={isOpen}
-        videoId="f2Gzr8sAGB8"
-        onClose={() => setOpen(false)}
-      />
     </>
   );
 }

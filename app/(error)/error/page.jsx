@@ -6,9 +6,8 @@ import Cta from "@/components/common/Cta";
 import NotFound from "@/components/otherPages/NotFound";
 import Link from "next/link";
 export const metadata = {
-  title:
-    "Page Not Found || Techbe-IT Solution & Technology Service Nextjs Template",
-  description: "Techbe-IT Solution & Technology Service Nextjs Template",
+  title: "Error Page Not Found || Fiducia Net",
+  description: "Fiducia Net || Your technology companion",
 };
 export default function Page() {
   return (

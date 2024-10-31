@@ -21,10 +21,9 @@ export default async function Hero() {
           <SwiperSlide className="swiper-slide" key={slide._id}>
             <div className="hero-inner">
               <div
-                className="gt-hero-bg"
+                className="gt-hero-bg "
                 style={{
                   backgroundImage: `url(${urlFor(slide.bgSrc.asset._ref).url()})`,
-                  
                 }}
               />
               <div className="container">

@@ -1,7 +1,11 @@
 import React from "react";
 import Image from "next/image";
+import { urlFor } from "@/sanity/lib/image";
+import Link from "next/link";
 
 export default function ProjectDetails({ projectItem }) {
+  console.log(projectItem)
+
   return (
     <section className="Project-details-section fix space-top pb-425">
       <div className="container">
@@ -15,7 +19,7 @@ export default function ProjectDetails({ projectItem }) {
                 >
                   <Image
                     alt="img"
-                    src={projectItem.imgSrc}
+                    src={urlFor(projectItem.image.asset._ref).url()}
                     width="1170"
                     height="550"
                   />
@@ -24,16 +28,10 @@ export default function ProjectDetails({ projectItem }) {
                   <div className="col-lg-7">
                     <div className="details-content pt-5">
                       <h3 className="wow fadeInUp" data-wow-delay=".6s">
-                        {projectItem.title}
+                        {projectItem.projectName}
                       </h3>
                       <p className="wow fadeInUp" data-wow-delay=".9s">
-                        Nulla faucibus malesuada. In placerat feugiat eros ac
-                        tempor. Integer euismod massa sapien, et consequat enim
-                        laoreet et. Nulla sit amet nisi dapibus, gravida turpis
-                        sit amet, accumsan nisl. Fusce vel semper risus. Morbi
-                        congue eros sagittis, sodales turpis venenatis, iaculis
-                        dui. Proin ac purus sed nibh dapibus neque. scelerisque
-                        sed quis ante.
+                        {projectItem.description}
                       </p>
                     </div>
                   </div>
@@ -45,17 +43,10 @@ export default function ProjectDetails({ projectItem }) {
                       <h3>Project Info:</h3>
                       <ul>
                         <li>
-                          Client:
-                          <span>Ralph Edwards</span>
-                        </li>
-                        <li>
                           Category:
-                          <span>IT Management</span>
+                          <span>{projectItem.service.serviceName}</span>
                         </li>
-                        <li>
-                          Location:
-                          <span>Landon</span>
-                        </li>
+
                         <li>
                           Share:
                           <span>
@@ -128,14 +119,10 @@ export default function ProjectDetails({ projectItem }) {
                 >
                   <h3>The Result of Project</h3>
                   <p>
-                    Pellentesque egestas rutrum nibh facilisis ultrices.
-                    Phasellus in magna ut orci malesuada sollicitudin. Aenean
-                    faucibus scelerisque convallis. Quisque interdum mauris id
-                    nunc molestie, ac tincidunt erat gravida. Nullam dui libero,
-                    mollis ac quam et, venenatis tincidunt quam. Proin nec
-                    volutpat ligula, id porttitor augue. Proin id volutpat
-                    massa. Vivamus tincidunt nunc justo, ac aliquam ex molestie
-                    id.
+                    <b>Check out the live site here:{" "}
+                    <Link href={projectItem.liveLink}>
+                      {projectItem.projectName}
+                    </Link></b> 
                   </p>
                 </div>
                 <div className="row g-4 pt-5">
@@ -159,32 +146,6 @@ export default function ProjectDetails({ projectItem }) {
                       />
                     </div>
                   </div>
-                </div>
-              </div>
-              <div className="preview-area">
-                <div className="preview-item wow fadeInUp" data-wow-delay=".9s">
-                  <Image
-                    alt="img"
-                    src="/assets/img/project/projectThumb3_4.png"
-                    width="62"
-                    height="62"
-                  />
-                  <div className="content">
-                    <h3>Preview</h3>
-                    <p>Analytic Solutions</p>
-                  </div>
-                </div>
-                <div className="preview-item wow fadeInUp" data-wow-delay="1s">
-                  <div className="content text-right">
-                    <h3>Next</h3>
-                    <p>Software Development</p>
-                  </div>
-                  <Image
-                    alt="img"
-                    src="/assets/img/project/projectThumb3_5.png"
-                    width="62"
-                    height="62"
-                  />
                 </div>
               </div>
             </div>

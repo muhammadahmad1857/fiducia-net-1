@@ -7,8 +7,8 @@ import Contact from "@/components/otherPages/contact/Contact";
 import Map from "@/components/otherPages/contact/Map";
 import Link from "next/link";
 export const metadata = {
-  title: "Contact || Techbe-IT Solution & Technology Service Nextjs Template",
-  description: "Techbe-IT Solution & Technology Service Nextjs Template",
+  title: "Contact || Fiducia Net",
+  description: "Fiducia Net || Your technology companion",
 };
 export default function Page() {
   return (

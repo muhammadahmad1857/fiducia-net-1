@@ -27,7 +27,7 @@ export const menuItems = [
     subMenu: [
       {
         title: "Project",
-        href: "/project",
+        href: "/projects",
         // subMenu: [
         //   { title: "Project", href: "/project" },
         //   { title: "Project Details", href: "/project-details/1" },

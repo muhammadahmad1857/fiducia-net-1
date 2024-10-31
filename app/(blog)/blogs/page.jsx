@@ -3,12 +3,13 @@ import Header1 from "@/components/headers/Header1";
 import HeaderTop from "@/components/headers/HeaderTop";
 
 import Cta from "@/components/common/Cta";
-import Projects from "@/components/otherPages/project/Projects";
+import Blogs1 from "@/components/otherPages/blog/Blogs1";
 import Link from "next/link";
 export const metadata = {
-  title: "Project || Techbe-IT Solution & Technology Service Nextjs Template",
-  description: "Techbe-IT Solution & Technology Service Nextjs Template",
+  title: "Blogs || Fiducia Net",
+  description: "Fiducia net || Your technology companion",
 };
+
 export default function Page() {
   return (
     <>
@@ -24,7 +25,7 @@ export default function Page() {
             <div className="container">
               <div className="page-heading">
                 <h1 className="wow fadeInUp" data-wow-delay=".3s">
-                  Project 01
+                  Blogs
                 </h1>
                 <ul
                   className="breadcrumb-items wow fadeInUp"
@@ -39,13 +40,13 @@ export default function Page() {
                   <li>
                     <i className="fas fa-chevrons-right" />
                   </li>
-                  <li>Project 01</li>
+                  <li>Blogs</li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
-        <Projects />
+        <Blogs1 />
         <Cta />
       </main>
       <Footer1 />

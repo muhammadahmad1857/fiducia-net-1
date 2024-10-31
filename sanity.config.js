@@ -13,6 +13,7 @@ import { colorInput } from "@sanity/color-input";
 import { apiVersion, dataset, projectId } from "./sanity/env";
 import { schema } from "./sanity/schemaTypes";
 import { structure } from "./sanity/structure";
+import { markdownSchema } from "sanity-plugin-markdown";
 
 export default defineConfig({
   basePath: "/admin",
@@ -21,6 +22,7 @@ export default defineConfig({
   // Add and edit the content schema in the './sanity/schemaTypes' folder
   schema,
   plugins: [
+    markdownSchema(),
     colorInput(),
     structureTool({ structure }),
     // Vision is for querying with GROQ from inside the Studio

@@ -6,14 +6,16 @@ import Cta from "@/components/common/Cta";
 import TeamDetails from "@/components/otherPages/team/TeamDetails";
 import Link from "next/link";
 import { allTeammembers } from "@/data/team";
+import NotFound from "@/components/otherPages/NotFound";
+import { fetchData } from "@/data/sanityData";
 export const metadata = {
-  title:
-    "Team Details || Techbe-IT Solution & Technology Service Nextjs Template",
-  description: "Techbe-IT Solution & Technology Service Nextjs Template",
+  title: "Team Details || Fiducia Net",
+  description: "Fiducia Net || Your technology companion",
 };
-export default function Page({ params }) {
-  const teamMember =
-    allTeammembers.filter((elm) => elm.id == params.id)[0] || allTeammembers[0];
+export default async function Page({ params }) {
+  const allTeammembers = await fetchData('team')
+  const teamMember = allTeammembers.filter((elm) => elm.id == params.id)[0];
+
   return (
     <>
       <HeaderTop />
@@ -28,7 +30,7 @@ export default function Page({ params }) {
             <div className="container">
               <div className="page-heading">
                 <h1 className="wow fadeInUp" data-wow-delay=".3s">
-                  {teamMember.name}
+                  {teamMember ? teamMember.name : "Not Found"}
                 </h1>
                 <ul
                   className="breadcrumb-items wow fadeInUp"
@@ -49,7 +51,11 @@ export default function Page({ params }) {
             </div>
           </div>
         </div>
-        <TeamDetails teamMember={teamMember} />
+        {teamMember ? (
+          <TeamDetails teamMember={teamMember} />
+        ) : (
+          <NotFound title="Team Member" href={"team"} />
+        )}{" "}
         <Cta />
       </main>
       <Footer1 />

@@ -4,9 +4,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { fetchData } from "@/data/sanityData";
 import { urlFor } from "@/sanity/lib/image";
+import NoData from "../noData";
 
 export default async function Services() {
   const serviceItems = await fetchData("services");
+  if(serviceItems.length ===0) {
+    return <NoData/>
+  }
   return (
     <section className="all-services-area space-top">
       <div className="container">

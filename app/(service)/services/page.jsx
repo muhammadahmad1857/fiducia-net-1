@@ -9,8 +9,8 @@ import VideoBox from "@/components/homes/home-2/VideoBox";
 import Team from "@/components/homes/home-1/Team";
 import Link from "next/link";
 export const metadata = {
-  title: "Service 1 || Techbe-IT Solution & Technology Service Nextjs Template",
-  description: "Techbe-IT Solution & Technology Service Nextjs Template",
+  title: "Services || Fiducia Net",
+  description: "Fiducia Net || Your technology companion",
 };
 export default function Page() {
   return (
@@ -27,7 +27,7 @@ export default function Page() {
             <div className="container">
               <div className="page-heading">
                 <h1 className="wow fadeInUp" data-wow-delay=".3s">
-                  Services 
+                  Services
                 </h1>
                 <ul
                   className="breadcrumb-items wow fadeInUp"

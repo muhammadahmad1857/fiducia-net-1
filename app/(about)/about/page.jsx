@@ -11,8 +11,8 @@ import AboutCta from "@/components/otherPages/AboutCta";
 import Testimonials from "@/components/homes/home-2/Testimonials";
 import Link from "next/link";
 export const metadata = {
-  title: "About || Techbe-IT Solution & Technology Service Nextjs Template",
-  description: "Techbe-IT Solution & Technology Service Nextjs Template",
+  title: "About || Fiducia Net",
+  description: "Fiducia Net || Your technology companion",
 };
 export default function Page() {
   return (

@@ -44,7 +44,7 @@ export default async function Services() {
                   <h3>
                     <Link
                       scroll={false}
-                      href={`/service-details/${service.slug.currwnt}`}
+                      href={`/services/service-details/${service.slug.current}`}
                       className="title"
                     >
                       {service.title}
@@ -55,7 +55,7 @@ export default async function Services() {
                 <div className="link-btn">
                   <Link
                     scroll={false}
-                    href={`/service-details/${service.slug.current}`}
+                    href={`/services/service-details/${service.slug.current}`}
                   >
                     <i className="fa-sharp fa-regular fa-arrow-right-long" />
                   </Link>

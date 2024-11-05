@@ -4,10 +4,26 @@ import Comments from "./Comments";
 import CommentForm from "./CommentForm";
 import Image from "next/image";
 import { PortableText } from "next-sanity";
-import blog from "@/sanity/schemaTypes/blog";
 import { urlFor } from "@/sanity/lib/image";
+import urlBuilder from "@sanity/image-url";
 
 export default function BlogDetails({ blogItem }) {
+  const myPortableTextComponents = {
+    types: {
+      image: ({ value, isInline }) => (
+        <img
+          src={urlFor(value).width(20000).fit("max").auto("format").url()}
+          alt={value.alt || "Blog image"}
+          style={{
+            display: isInline ? "inline-block" : "block",
+            minWidth: "100%",
+            margin: isInline ? "0" : "auto",
+          }}
+        />
+      ),
+    },
+  };
+
   return (
     <section className="news-standard fix space-top pb-425">
       <div className="container">
@@ -50,7 +66,10 @@ export default function BlogDetails({ blogItem }) {
                     <h3 className="wow fadeInUp" data-wow-delay=".4s">
                       {blogItem?.title}
                     </h3>
-                    <PortableText value={blogItem?.content} />
+                    <PortableText
+                      value={blogItem?.content}
+                      components={myPortableTextComponents}
+                    />
                   </div>
                 </div>
                 <div

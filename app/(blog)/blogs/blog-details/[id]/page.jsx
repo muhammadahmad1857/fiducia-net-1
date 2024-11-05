@@ -11,12 +11,12 @@ export const metadata = {
   title: "Blog Details || Fiducia net",
   description: "Fiducia Net || Your technology companion",
 };
-
-const fetchData = async () => {
-  const data = await client.fetch(`
-    *[_type == 'blogs']{
+const fetchData = async (id) => {
+  const data = await client.fetch(
+    `
+    *[_type == 'blogs' && slug.current == $id][0]{ // Only return the first match
       title,
-      body,
+      content,
       slug { current },
       thumb { asset },
       _createdAt,
@@ -24,13 +24,17 @@ const fetchData = async () => {
         serviceName
       }
     }
-  `);
+  `,
+    { id: id },
+    { cache: "no-store" }
+  );
   return data;
 };
-export default async function Page({ params }) {
-  const allBlogs = await fetchData();
-  const blogItem = allBlogs.filter((elm) => elm.slug.current == params.slug)[0];
 
+export default async function Page({ params }) {
+  const blogItem = await fetchData(params.id);
+  console.log("id",params.id)
+  console.log("blog", blogItem);
   return (
     <>
       <HeaderTop />

@@ -20,7 +20,7 @@ export default function BlogDetails({ blogItem }) {
                     className="post-featured-thumb"
                     data-bg-src=""
                     style={{
-                      backgroundImage: `url(${urlFor(blogItem.thumb.asset._ref).url()})`,
+                      backgroundImage: `url(${blogItem?.thumb && urlFor(blogItem?.thumb.asset._ref).url()})`,
                     }}
                   />
                   <div className="post-content">
@@ -44,13 +44,13 @@ export default function BlogDetails({ blogItem }) {
                           width="20"
                           height="20"
                         />
-                        {blogItem.category?.serviceName}
+                        {blogItem?.category?.serviceName}
                       </li>
                     </ul>
                     <h3 className="wow fadeInUp" data-wow-delay=".4s">
-                      {blogItem.title}
+                      {blogItem?.title}
                     </h3>
-                    <PortableText value={blogItem.body} />
+                    <PortableText value={blogItem?.content} />
                   </div>
                 </div>
                 <div

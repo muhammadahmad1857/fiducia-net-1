@@ -7,6 +7,7 @@ import TextSliderSchema from "./textSlider";
 import slidesData from "./slidesData";
 import blog from "./blog";
 import faq from "./faq";
+import homeVideo from "./homeVideo";
 
 export const schema = {
   types: [
@@ -19,5 +20,6 @@ export const schema = {
     blog,
     faq,
     team,
+    homeVideo,
   ],
 };

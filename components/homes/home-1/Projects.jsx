@@ -77,8 +77,9 @@ export default function Projects() {
               <h2
                 className="title text-start text-white wow fadeInUp"
                 data-wow-delay=".6s"
+                style={{ textWrap: "nowrap" }}
               >
-                Latest projects from our Fiducia net 
+                Latest projects from our Fiducia net
               </h2>
             </div>
             <div

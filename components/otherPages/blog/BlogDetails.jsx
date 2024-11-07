@@ -5,7 +5,7 @@ import CommentForm from "./CommentForm";
 import Image from "next/image";
 import { PortableText } from "next-sanity";
 import { urlFor } from "@/sanity/lib/image";
-import urlBuilder from "@sanity/image-url";
+
 
 export default function BlogDetails({ blogItem }) {
   const myPortableTextComponents = {
@@ -17,7 +17,7 @@ export default function BlogDetails({ blogItem }) {
           style={{
             display: isInline ? "inline-block" : "block",
             minWidth: "100%",
-            margin: isInline ? "0" : "auto",
+            margin: "30px 0px",
           }}
         />
       ),
@@ -76,14 +76,14 @@ export default function BlogDetails({ blogItem }) {
                   className="row tag-share-wrap mt-4 mb-30 wow fadeInUp"
                   data-wow-delay=".8s"
                 >
-                  <div className="col-lg-8 col-12">
+                  {/* <div className="col-lg-8 col-12">
                     <div className="tagcloud">
                       <h6 className="d-inline me-2">Tags:</h6>
-                      <a href={`#`}>News</a>
-                      <a href={`#`}>business</a>
-                      <a href={`#`}>marketing</a>
+                      {blogItem.tags.map((tag) => {
+                        return <Link href={"#"}>{tag}</Link>;
+                      })}
                     </div>
-                  </div>
+                  </div> */}
                   <div
                     className="col-lg-4 col-12 mt-3 mt-lg-0 text-lg-end wow fadeInUp"
                     data-wow-delay="1.2s"
@@ -107,7 +107,7 @@ export default function BlogDetails({ blogItem }) {
                 </div>
               </div>
             </div>
-            <Sidebar />
+            <Sidebar currentBlogCategory={blogItem.category.serviceName} />
           </div>
         </div>
       </div>

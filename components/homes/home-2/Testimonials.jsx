@@ -3,8 +3,12 @@ import { testimonials } from "@/data/testimonials";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
-
-export default function Testimonials() {
+import { PortableText } from "@portabletext/react";
+import { fetchData } from "@/data/sanityData";
+import { urlFor } from "@/sanity/lib/image";
+export default async function Testimonials() {
+  const testimonialsData = await fetchData("reviews");
+  console.log(testimonialsData);
   return (
     <section className="testimonial-area">
       <div className="testimonial-wrap style2 space fix">
@@ -37,8 +41,8 @@ export default function Testimonials() {
                   width="28"
                   height="12"
                 />
-              </span>{' '}
-              Testimonials{' '}
+              </span>{" "}
+              Testimonials{" "}
               <span>
                 <Image
                   alt="icon"
@@ -83,46 +87,61 @@ export default function Testimonials() {
                     modules={[Navigation]}
                     spaceBetween={20}
                     navigation={{
-                      prevEl: ".snbp5",
+                      prevEl: ".snbp5", 
                       nextEl: ".snbn5",
                     }}
                     className="swiper gt-slider testimonial-slider2"
                     id="testimonialSlider2"
                   >
-                    {testimonials.map((testimonial, index) => (
+                    {testimonialsData.map((testimonial, index) => (
                       <SwiperSlide className="swiper-slide" key={index}>
                         <div className="testimonial-card style2">
                           <div className="profile-box">
                             <div className="testi-thumb">
-                              <Image
-                                src={testimonial.imageSrc}
-                                width={100}
-                                height={100}
-                                alt="thumb"
-                              />
+                              {testimonial.image?.asset?._ref ? (
+                                <Image
+                                  src={urlFor(
+                                    testimonial.image.asset._ref
+                                  ).url()}
+                                  width={100}
+                                  height={100}
+                                  alt="thumb"
+                                />
+                              ) : (
+                                <div className="avatar">
+                                  <span>
+                                    {testimonial.userName
+                                      .charAt(0)
+                                      .toUpperCase()}
+                                  </span>
+                                </div>
+                              )}
                             </div>
                             <div className="testi-content">
-                              <h3 className="title">{testimonial.name}</h3>
+                              <h3 className="title"> {testimonial.userName}</h3>
                               <div className="designation">
-                                {testimonial.designation}
+                                {testimonial.position}
                               </div>
                               <ul className="star-wrap">
-                                {[...Array(testimonial.stars)].map(
-                                  (_, starIndex) => (
-                                    <li key={starIndex}>
-                                      <Image
-                                        alt="icon"
-                                        src="/assets/img/icon/starIcon.png"
-                                        width="20"
-                                        height="20"
-                                      />
-                                    </li>
-                                  )
-                                )}
+                              {Array(5)
+                            .fill()
+                            .map((_, index) => (
+                              <li key={index}>
+                                <Image
+                                  alt="icon"
+                                  src="/assets/img/icon/starIcon.png"
+                                  width="20"
+                                  height="20"
+                                />
+                              </li>
+                            ))}
                               </ul>
                             </div>
                           </div>
-                          <p className="text">{testimonial.text}</p>
+                          <p className="text">
+                            {" "}
+                            <PortableText value={testimonial.review} />
+                          </p>
                           <div className="quote">
                             <Image
                               alt="icon"

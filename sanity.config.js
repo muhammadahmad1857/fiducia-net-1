@@ -14,6 +14,7 @@ import { apiVersion, dataset, projectId } from "./sanity/env";
 import { schema } from "./sanity/schemaTypes";
 import { structure } from "./sanity/structure";
 import { markdownSchema } from "sanity-plugin-markdown";
+import { muxInput } from "sanity-plugin-mux-input";
 
 export default defineConfig({
   basePath: "/admin",
@@ -24,6 +25,7 @@ export default defineConfig({
   plugins: [
     markdownSchema(),
     colorInput(),
+    muxInput(),
     structureTool({ structure }),
     // Vision is for querying with GROQ from inside the Studio
     // https://www.sanity.io/docs/the-vision-plugin

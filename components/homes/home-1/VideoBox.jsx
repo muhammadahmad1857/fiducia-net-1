@@ -1,10 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ModalVideo from "react-modal-video";
+import { client } from "@/sanity/lib/client"; // Adjust the path as necessary
 
 export default function VideoBox() {
   const [isOpen, setOpen] = useState(false);
+  const [videoId, setVideoId] = useState("");
+
+  useEffect(() => {
+    // Fetch video data from Sanity
+    const fetchVideo = async () => {
+      const query = '*[_type == "video"] { video { playbackId } }'; // Adjust based on your schema
+      const data = await client.fetch(query);
+      if (data.length > 0) {
+        setVideoId(data[0].video.playbackId); // Get the first video's playback ID
+      }
+    };
+
+    fetchVideo();
+  }, []);
+
   return (
     <>
       <div
@@ -25,12 +41,11 @@ export default function VideoBox() {
             </div>
           </div>
         </div>
-      </div>{" "}
+      </div>
       <ModalVideo
-        channel="youtube"
-        youtube={{ mute: 0, autoplay: 0 }}
+        channel="mux"
         isOpen={isOpen}
-        videoId="f2Gzr8sAGB8"
+        videoId={videoId} // Use the fetched videoId
         onClose={() => setOpen(false)}
       />
     </>

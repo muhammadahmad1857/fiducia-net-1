@@ -20,6 +20,7 @@ const fetchData = async (id) => {
       slug { current },
       thumb { asset },
       _createdAt,
+      tags,
       "category": category->{
         serviceName
       }
@@ -33,7 +34,7 @@ const fetchData = async (id) => {
 
 export default async function Page({ params }) {
   const blogItem = await fetchData(params.id);
-  console.log("id",params.id)
+  console.log("id", params.id);
   console.log("blog", blogItem);
   return (
     <>

@@ -6,7 +6,7 @@ import Image from "next/image";
 import { fetchData } from "@/data/sanityData";
 import { urlFor } from "@/sanity/lib/image";
 import { useEffect, useState } from "react";
-export default async function Hero() {
+export default  function Hero() {
   const [slidesData, setSlidesData] = useState([]);
   useEffect(() => {
     const fetchSlides = async () => {

@@ -6,9 +6,18 @@ import { PortableText } from "@portabletext/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { fetchData } from "@/data/sanityData";
 import { urlFor } from "@/sanity/lib/image";
+import { useEffect, useState } from "react";
 
-export default async function Testimonials() {
-  const testimonialsData = await fetchData("reviews");
+export default  function Testimonials() {
+  const [testimonialsData, setTestimonialData] = useState([]);
+
+  useEffect(()=>{
+    const fetch = async ()=>{
+      const response = await fetchData("reviews");
+      setTestimonialData(response);
+    }
+    fetch();
+  },[])
 
   return (
     <section className="testimonial-area space fix">

@@ -6,9 +6,16 @@ import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 import { fetchData } from "@/data/sanityData";
 import { urlFor } from "@/sanity/lib/image";
-export default async function Testimonials() {
-  const testimonialsData = await fetchData("reviews");
-  console.log(testimonialsData);
+export default  function Testimonials() {
+  const [testimonialsData, setTestimonialData] = useState([]);
+
+  useEffect(()=>{
+    const fetch = async ()=>{
+      const response = await fetchData("reviews");
+      setTestimonialData(response);
+    }
+    fetch();
+  },[])
   return (
     <section className="testimonial-area">
       <div className="testimonial-wrap style2 space fix">

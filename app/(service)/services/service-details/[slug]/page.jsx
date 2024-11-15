@@ -6,19 +6,32 @@ import ServiceDetails from "@/components/otherPages/service/ServiceDetails";
 import Link from "next/link";
 import { fetchData } from "@/data/sanityData";
 import NotFound from "@/components/otherPages/NotFound";
+import { client } from "@/sanity/lib/client";
 export const metadata = {
   title: "Service Details || Fiducia Net",
   description: "Fiducia Net || Your technology companion",
 };
 
+const fetchFaqData = async () => {
+  const data = await client.fetch(`*[_type=='faqs']{
+    "service": service->{
+       serviceName
+     },
+   question,
+   answer
+ }`);
+  return data;
+};
+
 export default async function Page({ params }) {
   const allService = await fetchData("services");
-  console.log(allService);
-  console.log(params);
   const serviceItem = allService.filter(
     (elm) => elm.slug.current == params.slug
   )[0];
-  console.log(serviceItem);
+  const faqData = await fetchFaqData();
+  const faqs = faqData.filter(
+    (f) => f.service.serviceName === serviceItem.serviceName
+  );
   return (
     <>
       <HeaderTop />
@@ -58,6 +71,7 @@ export default async function Page({ params }) {
           <ServiceDetails
             serviceItem={serviceItem}
             serviceCategory={allService}
+            faqData={faqs}
           />
         ) : (
           <NotFound title="Service" href={"services"} />

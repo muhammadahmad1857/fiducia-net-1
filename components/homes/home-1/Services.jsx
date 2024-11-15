@@ -40,7 +40,7 @@ export default async function Services() {
                     alt="icon"
                   />
                 </div>
-                <div className="card_content">
+                <div className="card_content " style={{textTransform:"capitalize"}}>
                   <h3>
                     <Link
                       scroll={false}

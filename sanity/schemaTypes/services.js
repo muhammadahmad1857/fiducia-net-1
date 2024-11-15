@@ -14,6 +14,17 @@ export default {
       title: "Description",
     },
     {
+      title: "Body Of the service",
+      name: "body",
+      type: "array",
+      of: [
+        { type: "block" },
+        {
+          type: "image",
+        },
+      ],
+    },
+    {
       name: "icon",
       type: "image",
       title: "Icon",

@@ -1,25 +1,31 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import ModalVideo from "react-modal-video";
 import { client } from "@/sanity/lib/client"; // Adjust the path as necessary
+import { urlFor } from "@/sanity/lib/image";
+import MuxPlayer from "@mux/mux-player-react";
 
 export default function VideoBox() {
   const [isOpen, setOpen] = useState(false);
   const [videoId, setVideoId] = useState("");
+  const [thumb, setThumb] = useState("");
 
   useEffect(() => {
     // Fetch video data from Sanity
     const fetchVideo = async () => {
-      const query = '*[_type == "video"] { video { playbackId } }'; // Adjust based on your schema
+      const query = '*[_type == "video"] { video { asset } , thumb {asset}}'; // Adjust based on your schema
       const data = await client.fetch(query);
       if (data.length > 0) {
-        setVideoId(data[0].video.playbackId); // Get the first video's playback ID
+        setVideoId(data[0].video.asset.playbackId); // Get the first video's playback ID
+        setThumb(urlFor(data[0].thumb.asset._ref).url());
       }
     };
 
     fetchVideo();
+    console.log(thumb);
+    console.log(isOpen);
   }, []);
+ 
 
   return (
     <>
@@ -32,7 +38,10 @@ export default function VideoBox() {
             <div
               className="video-box"
               style={{
-                backgroundImage: "url(/assets/img/bg/videoBoxBg1_1.png)",
+                backgroundImage: `url(${thumb})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center center",
+                backgroundRepeat: "no-repeat",
               }}
             >
               <a onClick={() => setOpen(true)} className="play-btn popup-video">
@@ -42,12 +51,21 @@ export default function VideoBox() {
           </div>
         </div>
       </div>
-      <ModalVideo
-        channel="mux"
-        isOpen={isOpen}
-        videoId={videoId} // Use the fetched videoId
-        onClose={() => setOpen(false)}
-      />
+      {isOpen && (
+        <div
+          style={{
+            position: "fixed",
+            inset: "0",
+            margin: "auto",
+            zIndex: "999999999999999999999",
+          }}
+        >
+          <MuxPlayer playbackId={videoId} placeholder={thumb} />
+          <button onClick={() => setOpen(false)} className="mux-button">
+            <i className="fa fa-times"></i>
+          </button>
+        </div>
+      )}
     </>
   );
 }

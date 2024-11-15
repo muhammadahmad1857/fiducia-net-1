@@ -2,10 +2,49 @@
 import Image from "next/image";
 import { hours } from "@/data/services";
 import Faq1 from "../faq/Faq1";
-import ModalVideo from "react-modal-video";
-import { useState } from "react";
-export default function ServiceDetails({ serviceItem, serviceCategory }) {
+import MuxPlayer from "@mux/mux-player-react";
+import { useState, useEffect } from "react";
+import { urlFor } from "@/sanity/lib/image";
+import { client } from "@/sanity/lib/client";
+import { PortableText } from "next-sanity";
+export default function ServiceDetails({
+  serviceItem,
+  serviceCategory,
+  faqData,
+}) {
   const [isOpen, setOpen] = useState(false);
+  const [videoId, setVideoId] = useState("");
+  const [thumb, setThumb] = useState("");
+
+  useEffect(() => {
+    // Fetch video data from Sanity
+    const fetchVideo = async () => {
+      const query = '*[_type == "video"] { video { asset } , thumb {asset}}'; // Adjust based on your schema
+      const data = await client.fetch(query);
+      if (data.length > 0) {
+        setVideoId(data[0].video.asset.playbackId); // Get the first video's playback ID
+        setThumb(urlFor(data[0].thumb.asset._ref).url());
+      }
+    };
+
+    fetchVideo();
+  }, []);
+
+  const myPortableTextComponents = {
+    types: {
+      image: ({ value, isInline }) => (
+        <img
+          src={urlFor(value).width(20000).fit("max").auto("format").url()}
+          alt={value.alt || "Blog image"}
+          style={{
+            display: isInline ? "inline-block" : "block",
+            minWidth: "100%",
+            margin: "30px 0px",
+          }}
+        />
+      ),
+    },
+  };
 
   return (
     <>
@@ -90,7 +129,7 @@ export default function ServiceDetails({ serviceItem, serviceCategory }) {
                   <div className="details-image">
                     <Image
                       alt="img"
-                      src="/assets/img/service/serviceThumb3_1.png"
+                      src={urlFor(serviceItem.thumb.asset._ref).url()}
                       width="770"
                       height="470"
                     />
@@ -100,30 +139,18 @@ export default function ServiceDetails({ serviceItem, serviceCategory }) {
                       {serviceItem.title}
                     </h3>
                     <p className="mt-3 wow fadeInUp" data-wow-delay=".9s">
-                      The is ipsum dolor sit amet consectetur adipiscing elit.
-                      Fusce is eleifend porta arcu In hac habitasse the platea
-                      thelorem turpoi dictumst. In lacus libero faucibus
-                      malesuada sagittis placerat eros sed istincidunt augue ac
-                      ante rutrum sed the is sodales augue consequat.
+                      <PortableText
+                        value={serviceItem.body}
+                        components={myPortableTextComponents}
+                      />
                     </p>
-                    <p className="mt-3 wow fadeInUp" data-wow-delay="1.2s">
-                      lacus sed pretium pretium justo. Integer is vitae
-                      venenatis lorem. Maecenas lacinia turpis the in nunc quam
-                      hendrerit scelerisque at finibus enim sagittis. Aliquam
-                      erat is volutpat nam nec purus at is orci volutpat semper
-                      vel id turpis In a malesuada arcu ac hendrerit.
-                    </p>
+
                     <div
                       className="details-video-items wow fadeInUp"
                       data-wow-delay="1.3s"
                     >
                       <div className="video-thumb">
-                        <Image
-                          alt="img"
-                          src="/assets/img/service/serviceThumb3_2.png"
-                          width="405"
-                          height="257"
-                        />
+                        <Image alt="img" src={thumb} width="405" height="257" />
                         <a
                           onClick={() => setOpen(true)}
                           className="play-btn popup-video"
@@ -153,40 +180,6 @@ export default function ServiceDetails({ serviceItem, serviceCategory }) {
                         </ul>
                       </div>
                     </div>
-                    <p className="mb-40 wow fadeInUp" data-wow-delay="1.5s">
-                      Consectetur adipisicing elit, sed do eiusmod tempor
-                      incididunt ut labore et dolore of magna aliqua. Ut enim ad
-                      minim veniam, made of owl the quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea dolor commodo
-                      consequat. Duis aute irure and dolor in reprehenderit.
-                    </p>
-                    <div
-                      className="image-area wow fadeInUp"
-                      data-wow-delay="1.6s"
-                    >
-                      <div className="row g-4">
-                        <div className="col-lg-6 col-md-6">
-                          <div className="thumb">
-                            <Image
-                              alt="img"
-                              src="/assets/img/service/serviceThumb3_3.png"
-                              width="370"
-                              height="307"
-                            />
-                          </div>
-                        </div>
-                        <div className="col-lg-6 col-md-6">
-                          <div className="thumb">
-                            <Image
-                              alt="img"
-                              src="/assets/img/service/serviceThumb3_4.png"
-                              width="370"
-                              height="307"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                     <h3 className="wow fadeInUp" data-wow-delay="1.8s">
                       Most Comment Question?
                     </h3>
@@ -199,7 +192,7 @@ export default function ServiceDetails({ serviceItem, serviceCategory }) {
                   </div>
                   <div className="faq-content style-3">
                     <div className="faq-accordion">
-                      <Faq1 />
+                      <Faq1 data={faqData} />
                     </div>
                   </div>
                 </div>
@@ -208,13 +201,21 @@ export default function ServiceDetails({ serviceItem, serviceCategory }) {
           </div>
         </div>
       </section>
-      <ModalVideo
-        channel="youtube"
-        youtube={{ mute: 0, autoplay: 0 }}
-        isOpen={isOpen}
-        videoId="f2Gzr8sAGB8"
-        onClose={() => setOpen(false)}
-      />
+      {isOpen && (
+        <div
+          style={{
+            position: "fixed",
+            inset: "0",
+            margin: "auto",
+            zIndex: "999999999999999999999",
+          }}
+        >
+          <MuxPlayer playbackId={videoId} placeholder={thumb} />
+          <button onClick={() => setOpen(false)} className="mux-button">
+            <i className="fa fa-times"></i>
+          </button>
+        </div>
+      )}
     </>
   );
 }

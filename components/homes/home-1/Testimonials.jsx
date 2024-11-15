@@ -9,7 +9,6 @@ import { urlFor } from "@/sanity/lib/image";
 
 export default async function Testimonials() {
   const testimonialsData = await fetchData("reviews");
-  console.log(testimonialsData);
 
   return (
     <section className="testimonial-area space fix">

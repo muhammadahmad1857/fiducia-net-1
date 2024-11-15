@@ -2,9 +2,15 @@ import { fetchData } from "@/data/sanityData";
 import React from "react";
 import NoData from "../noData";
 
-const Faq1 = async () => {
-  const faqData = await fetchData("faqs");
-  if (faqData.length ===0) {
+const Faq1 = async ({ data }) => {
+  let faqData;
+  if (!data) {
+    faqData = await fetchData("faqs");
+  }
+  else{
+    faqData = data;
+  }
+  if (faqData.length === 0) {
     return <NoData />;
   }
   return (

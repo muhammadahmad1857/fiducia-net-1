@@ -8,7 +8,7 @@ import CursorFollor from "@/components/common/CursorFollor";
 import { usePathname } from "next/navigation";
 import { ToastContainer } from "react-toastify";
 import PopupSearch from "@/components/headers/PopupSearch";
-
+import "@/app/global.css";
 export default function RootLayout({ children }) {
   const path = usePathname();
   useEffect(() => {

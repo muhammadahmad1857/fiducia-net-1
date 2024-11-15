@@ -25,7 +25,6 @@ export default function VideoBox() {
     console.log(thumb);
     console.log(isOpen);
   }, []);
- 
 
   return (
     <>
@@ -60,7 +59,7 @@ export default function VideoBox() {
             zIndex: "999999999999999999999",
           }}
         >
-          <MuxPlayer playbackId={videoId} placeholder={thumb} />
+          <MuxPlayer playbackId={videoId} autoPlay={true} loop={true} placeholder={thumb} />
           <button onClick={() => setOpen(false)} className="mux-button">
             <i className="fa fa-times"></i>
           </button>

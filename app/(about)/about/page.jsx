@@ -50,7 +50,15 @@ export default function Page() {
             </div>
           </div>
         </div>
-        <About />
+        <About
+          para={`Fiducia Net was founded with a vision to empower businesses through innovative digital solutions. Our journey began with a small team of passionate developers and tech enthusiasts who believed that quality and trust could transform the digital landscape. Over the years, we have grown into a full-service company, dedicated to delivering excellence in blockchain solutions, web and app development, AI services, and digital marketing. Our story is driven by the desire to create meaningful and lasting impact for our clients, helping them achieve their goals through the power of technology.
+
+At Fiducia Net, we pride ourselves on our commitment to quality work. Our team is made up of some of the best minds in the industry, each dedicated to pushing the boundaries of what’s possible. We believe in delivering solutions that are not just functional, but exceptional, setting the standard for quality and innovation in every project we undertake.
+
+To date, we have successfully completed over 100 projects, each one a testament to our relentless pursuit of excellence. Our clients trust us to deliver not only because of our technical expertise but because we care deeply about their success. It’s this client-first approach, combined with our unwavering commitment to quality, that sets us apart from the competition.
+
+With Fiducia Net, you get more than just a service provider—you get a partner who is invested in your success, equipped with a team that’s second to none in delivering cutting-edge, high-quality digital solutions.`}
+        />
         <Offering />
         <VideoBox />
         <Team />

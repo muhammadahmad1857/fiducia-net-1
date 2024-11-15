@@ -4,8 +4,15 @@ import Image from "next/image";
 // import ModalVideo from "react-modal-video";
 // import { useState } from "react";
 
-export default function About() {
+export default function About({ para }) {
   // const [isOpen, setOpen] = useState(false);
+  let data;
+  if (para) {
+    data = para;
+  } else {
+    data =
+      "It is a long established fact that a reader will be distracted the readable content of a page when looking at layout the point.";
+  }
   return (
     <>
       <section className="about-area space fix position-reltive">
@@ -105,11 +112,7 @@ export default function About() {
                   <h2 className="title text-start">
                     We Are Increasing Business Success With Technology
                   </h2>
-                  <p className="text">
-                    It is a long established fact that a reader will be
-                    distracted the readable content of a page when looking at
-                    layout the point.
-                  </p>
+                  <p className="text">{data}</p>
                 </div>
                 <div className="fancy-box-wrapper">
                   {fancyBoxes.map((box, index) => (

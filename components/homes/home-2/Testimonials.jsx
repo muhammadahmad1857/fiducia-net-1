@@ -6,16 +6,17 @@ import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 import { fetchData } from "@/data/sanityData";
 import { urlFor } from "@/sanity/lib/image";
-export default  function Testimonials() {
+import { useEffect, useState } from "react";
+export default function Testimonials() {
   const [testimonialsData, setTestimonialData] = useState([]);
 
-  useEffect(()=>{
-    const fetch = async ()=>{
+  useEffect(() => {
+    const fetch = async () => {
       const response = await fetchData("reviews");
       setTestimonialData(response);
-    }
+    };
     fetch();
-  },[])
+  }, []);
   return (
     <section className="testimonial-area">
       <div className="testimonial-wrap style2 space fix">
@@ -94,7 +95,7 @@ export default  function Testimonials() {
                     modules={[Navigation]}
                     spaceBetween={20}
                     navigation={{
-                      prevEl: ".snbp5", 
+                      prevEl: ".snbp5",
                       nextEl: ".snbn5",
                     }}
                     className="swiper gt-slider testimonial-slider2"
@@ -130,18 +131,18 @@ export default  function Testimonials() {
                                 {testimonial.position}
                               </div>
                               <ul className="star-wrap">
-                              {Array(5)
-                            .fill()
-                            .map((_, index) => (
-                              <li key={index}>
-                                <Image
-                                  alt="icon"
-                                  src="/assets/img/icon/starIcon.png"
-                                  width="20"
-                                  height="20"
-                                />
-                              </li>
-                            ))}
+                                {Array(5)
+                                  .fill()
+                                  .map((_, index) => (
+                                    <li key={index}>
+                                      <Image
+                                        alt="icon"
+                                        src="/assets/img/icon/starIcon.png"
+                                        width="20"
+                                        height="20"
+                                      />
+                                    </li>
+                                  ))}
                               </ul>
                             </div>
                           </div>

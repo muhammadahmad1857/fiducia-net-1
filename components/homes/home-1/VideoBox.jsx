@@ -59,7 +59,7 @@ export default function VideoBox() {
             zIndex: "999999999999999999999",
           }}
         >
-          <MuxPlayer playbackId={videoId} autoPlay={true} loop={true} placeholder={thumb} />
+          <MuxPlayer playbackId={videoId} autoPlay muted  loop placeholder={thumb} />
           <button onClick={() => setOpen(false)} className="mux-button">
             <i className="fa fa-times"></i>
           </button>

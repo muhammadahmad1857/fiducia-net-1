@@ -4,7 +4,6 @@ import { urlFor } from "@/sanity/lib/image";
 import Link from "next/link";
 
 export default function ProjectDetails({ projectItem }) {
-  console.log(projectItem)
 
   return (
     <section className="Project-details-section fix space-top pb-425">

@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 export default function Offering() {
   return (
-    <section className="offering-area fix">
+    <section className="offering-area fix" style={{ marginTop: "50px" }}>
       <div
         className="offering-wrap style1"
         style={{ backgroundImage: "url(/assets/img/bg/offeringBg1_1.png)" }}

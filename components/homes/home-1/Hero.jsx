@@ -5,8 +5,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { fetchData } from "@/data/sanityData";
 import { urlFor } from "@/sanity/lib/image";
+import { useEffect, useState } from "react";
 export default async function Hero() {
-  const slidesData = await fetchData("slidesData");
+  const [slidesData, setSlidesData] = useState([]);
+  useEffect(() => {
+    const fetchSlides = async () => {
+      const data = await fetchData("slidesData");
+      setSlidesData(data);
+    };
+    fetchSlides();
+  }, []);
 
   return (
     <section className="hero-1" id="hero">

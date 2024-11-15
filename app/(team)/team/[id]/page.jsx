@@ -5,7 +5,6 @@ import HeaderTop from "@/components/headers/HeaderTop";
 import Cta from "@/components/common/Cta";
 import TeamDetails from "@/components/otherPages/team/TeamDetails";
 import Link from "next/link";
-import { allTeammembers } from "@/data/team";
 import NotFound from "@/components/otherPages/NotFound";
 import { fetchData } from "@/data/sanityData";
 export const metadata = {

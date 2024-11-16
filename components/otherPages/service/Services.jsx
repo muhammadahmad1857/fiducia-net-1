@@ -11,7 +11,9 @@ export default function Services() {
 
   useEffect(() => {
     const fetchServiceData = async () => {
-      const data = await client.fetch(`*[_type=='services']`);
+      const data = await client.fetch(
+        `*[_type=='services']  | order(_updatedAt desc)`
+      );
       setServiceItems(data);
     };
     fetchServiceData();

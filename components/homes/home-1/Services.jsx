@@ -11,7 +11,7 @@ const Services = () => {
   useEffect(() => {
     const fetchServices = async () => {
       const data = await client.fetch(
-        `*[_type == "services"]  {
+        `*[_type == "services" ]  | order(_updatedAt desc)  {
           slug { current },
           serviceName,
           description,

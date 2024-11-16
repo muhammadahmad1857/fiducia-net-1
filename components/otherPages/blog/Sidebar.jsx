@@ -105,6 +105,7 @@ export default function Sidebar({ currentBlogCategory }) {
     const categoriesQuery = `*[_type == "services"] {
       _id,
       serviceName,
+      slug {current},
       "postCount": count(*[_type == "blogs" && references(^._id)])
     }`;
 
@@ -242,7 +243,7 @@ export default function Sidebar({ currentBlogCategory }) {
           </div>
           <div className="news-widget-categories">
             <ul>
-              {categories.length >  0 ? (
+              {categories.length > 0 ? (
                 categories.map((category) => (
                   <li
                     key={category._id}
@@ -254,7 +255,7 @@ export default function Sidebar({ currentBlogCategory }) {
                   >
                     <Link
                       scroll={false}
-                      href={`/blogs?category=${category.serviceName}`}
+                      href={`/blogs/${category.slug.current}`}
                       style={{ textTransform: "capitalize" }}
                     >
                       {category.serviceName} <span>({category.postCount})</span>

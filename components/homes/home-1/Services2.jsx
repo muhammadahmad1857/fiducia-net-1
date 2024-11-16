@@ -11,7 +11,7 @@ export default function Services2() {
   useEffect(() => {
     const fetchServices = async () => {
       const data = await client.fetch(
-        `*[_type == "services"] {
+        `*[_type == "services"]  | order(_updatedAt desc) {
           serviceName,
           title,
           description,

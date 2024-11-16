@@ -1,3 +1,4 @@
+"use client";
 import Footer1 from "@/components/footers/Footer1";
 import Header1 from "@/components/headers/Header1";
 import HeaderTop from "@/components/headers/HeaderTop";
@@ -7,13 +8,19 @@ import TeamDetails from "@/components/otherPages/team/TeamDetails";
 import Link from "next/link";
 import NotFound from "@/components/otherPages/NotFound";
 import { fetchData } from "@/data/sanityData";
-export const metadata = {
-  title: "Team Details || Fiducia Net",
-  description: "Fiducia Net || Your technology companion",
-};
-export default async function Page({ params }) {
-  const allTeammembers = await fetchData('team')
-  const teamMember = allTeammembers.filter((elm) => elm.id == params.id)[0];
+
+export default function Page({ params }) {
+  const [teamMember, setTeamMember] = useState(null);
+
+  useEffect(() => {
+    const fetchTeamMember = async () => {
+      const allTeammembers = await fetchData("team");
+      const member = allTeammembers.filter((elm) => elm.id == params.id)[0];
+      setTeamMember(member);
+    };
+
+    fetchTeamMember();
+  }, [params.id]);
 
   return (
     <>
@@ -54,7 +61,7 @@ export default async function Page({ params }) {
           <TeamDetails teamMember={teamMember} />
         ) : (
           <NotFound title="Team Member" href={"team"} />
-        )}{" "}
+        )}
         <Cta />
       </main>
       <Footer1 />

@@ -1,11 +1,31 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
-import { fetchData } from "@/data/sanityData";
+import { client } from "@/sanity/lib/client";
 
-export default async function Services2() {
-  const services = await fetchData("services");
+export default function Services2() {
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      const data = await client.fetch(
+        `*[_type == "services"] {
+          serviceName,
+          title,
+          description,
+          thumb { asset },
+          icon { asset },
+          slug { current },
+        }`
+      );
+      setServices(data);
+    };
+
+    fetchServices();
+  }, []);
+
   return (
     <section
       className="service-area space mt-1 fix"

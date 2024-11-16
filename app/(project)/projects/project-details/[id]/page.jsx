@@ -1,32 +1,39 @@
+"use client";
 import Footer1 from "@/components/footers/Footer1";
 import Header1 from "@/components/headers/Header1";
 import HeaderTop from "@/components/headers/HeaderTop";
-
+import { useState, useEffect } from "react";
 import Cta from "@/components/common/Cta";
 import ProjectDetails from "@/components/otherPages/project/ProjectDetails";
 import Link from "next/link";
 import NotFound from "@/components/otherPages/NotFound";
 import { client } from "@/sanity/lib/client";
-export const metadata = {
-  title: "Project Details || Fiducia Net",
-  description: "Fiducia Net || Your technology companion",
-};
 
 const fetchData = async () => {
   const data = client.fetch(`*[_type=='projects']{
     
-     "service": service->{
+     "services": service->{
         serviceName
       },
     ...
   }`);
   return data;
 };
-export default async function Page({ params }) {
-  const allProjects = await fetchData();
-  const projectItem = allProjects.filter(
-    (elm) => elm.slug.current == params.id
-  )[0];
+
+export default function Page({ params }) {
+  const [projectItem, setProjectItem] = useState(null);
+
+  useEffect(() => {
+    const fetchProject = async () => {
+      const allProjects = await fetchData();
+      const project = allProjects.filter(
+        (elm) => elm.slug.current == params.id
+      )[0];
+      setProjectItem(project);
+    };
+    fetchProject();
+  }, [params.id]);
+
   return (
     <>
       <HeaderTop />

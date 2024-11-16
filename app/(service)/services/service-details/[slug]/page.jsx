@@ -1,3 +1,4 @@
+"use client";
 import Footer1 from "@/components/footers/Footer1";
 import Header1 from "@/components/headers/Header1";
 import HeaderTop from "@/components/headers/HeaderTop";
@@ -7,11 +8,8 @@ import Link from "next/link";
 import { fetchData } from "@/data/sanityData";
 import NotFound from "@/components/otherPages/NotFound";
 import { client } from "@/sanity/lib/client";
-export const metadata = {
-  title: "Service Details || Fiducia Net",
-  description: "Fiducia Net || Your technology companion",
-};
-
+import { useState, useEffect } from "react";
+import { asLoadable } from "sanity";
 const fetchFaqData = async () => {
   const data = await client.fetch(`*[_type=='faqs']{
     "service": service->{
@@ -23,15 +21,33 @@ const fetchFaqData = async () => {
   return data;
 };
 
-export default async function Page({ params }) {
-  const allService = await fetchData("services");
-  const serviceItem = allService.filter(
-    (elm) => elm.slug.current == params.slug
-  )[0];
-  const faqData = await fetchFaqData();
-  const faqs = faqData.filter(
-    (f) => f.service.serviceName === serviceItem.serviceName
-  );
+export default function Page({ params }) {
+  const [serviceItem, setServiceItem] = useState(null);
+  const [allServices, setallServices] = useState(null);
+  const [faqs, setFaqs] = useState([]);
+
+  useEffect(() => {
+    const fetchService = async () => {
+      const allService = await fetchData("services");
+      const item = allService.filter(
+        (elm) => elm.slug.current == params.slug
+      )[0];
+      setallServices(allService);
+      setServiceItem(item);
+    };
+
+    const fetchFaqs = async () => {
+      const faqData = await fetchFaqData();
+      const filteredFaqs = faqData.filter(
+        (f) => f.service.serviceName === serviceItem?.serviceName
+      );
+      setFaqs(filteredFaqs);
+    };
+
+    fetchService();
+    fetchFaqs();
+  }, [params.slug, serviceItem]);
+
   return (
     <>
       <HeaderTop />
@@ -70,7 +86,7 @@ export default async function Page({ params }) {
         {serviceItem ? (
           <ServiceDetails
             serviceItem={serviceItem}
-            serviceCategory={allService}
+            serviceCategory={allServices}
             faqData={faqs}
           />
         ) : (

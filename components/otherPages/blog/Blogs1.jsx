@@ -1,31 +1,37 @@
+"use client";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import NoData from "../noData";
 import { client } from "@/sanity/lib/client";
 
-const fetchData = async () => {
-  const data = await client.fetch(`
-    *[_type == 'blogs']{
-      title,
-      slug { current },
-      thumb { asset },
-      _createdAt,
-      "category": category->{
-        serviceName
-      }
-    }
-  `);
-  return data;
-};
+const Blogs1 = () => {
+  const [blogsData, setBlogsData] = useState([]);
 
-export default async function Blogs1() {
-  const blogsData = await fetchData();
-  console.log(blogsData);
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await client.fetch(`
+        *[_type == 'blogs']{
+          title,
+          slug { current },
+          thumb { asset },
+          _createdAt,
+          "category": category->{
+            serviceName
+          }
+        }
+      `);
+      setBlogsData(data);
+    };
+
+    fetchData();
+  }, []);
+
   if (blogsData.length === 0) {
     return <NoData />;
   }
+
   return (
     <>
       <section className="blog-area space-top pb-425 fix">
@@ -119,4 +125,6 @@ export default async function Blogs1() {
       </section>
     </>
   );
-}
+};
+
+export default Blogs1;

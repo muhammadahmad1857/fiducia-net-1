@@ -1,16 +1,26 @@
-import { teamMembers3 } from "@/data/team";
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { fetchData } from "@/data/sanityData";
 import NoData from "../noData";
 import { urlFor } from "@/sanity/lib/image";
 
-export default async function Team1() {
-  const teamMembers = await fetchData("team");
+export default function Team1() {
+  const [teamMembers, setTeamMembers] = useState([]);
+
+  useEffect(() => {
+    const fetchTeamMembers = async () => {
+      const data = await fetchData("team");
+      setTeamMembers(data);
+    };
+    fetchTeamMembers();
+  }, []);
+
   if (teamMembers.length === 0) {
     return <NoData />;
   }
+
   return (
     <section className="team-area space-top pb-425 fix">
       <div className="team-wrap style1 space-top mb-10">

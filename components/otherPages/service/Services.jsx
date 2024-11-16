@@ -1,16 +1,26 @@
-// import { serviceItems } from "@/data/services";
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { fetchData } from "@/data/sanityData";
+import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import NoData from "../noData";
 
-export default async function Services() {
-  const serviceItems = await fetchData("services");
-  if(serviceItems.length ===0) {
-    return <NoData/>
+export default function Services() {
+  const [serviceItems, setServiceItems] = useState([]);
+
+  useEffect(() => {
+    const fetchServiceData = async () => {
+      const data = await client.fetch(`*[_type=='services']`);
+      setServiceItems(data);
+    };
+    fetchServiceData();
+  }, []);
+
+  if (serviceItems.length === 0) {
+    return <NoData />;
   }
+
   return (
     <section className="all-services-area space-top">
       <div className="container">

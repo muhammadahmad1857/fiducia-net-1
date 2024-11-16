@@ -5,7 +5,7 @@ import HeaderTop from "@/components/headers/HeaderTop";
 import Cta from "@/components/common/Cta";
 import Services from "@/components/otherPages/service/Services";
 import TextSlider from "@/components/homes/home-2/TextSlider";
-import VideoBox from "@/components/homes/home-2/VideoBox";
+import VideoBox from "@/components/homes/home-1/VideoBox";
 import Team from "@/components/homes/home-1/Team";
 import Link from "next/link";
 export const metadata = {

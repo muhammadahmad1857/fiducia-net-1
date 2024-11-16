@@ -1,12 +1,21 @@
-import { teamMembers2 } from "@/data/team";
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { fetchData } from "@/data/sanityData";
 import { urlFor } from "@/sanity/lib/image";
 
-export default async function Team() {
-  const teamMembers = await fetchData("team");
+export default function Team() {
+  const [teamMembers, setTeamMembers] = useState([]);
+
+  useEffect(() => {
+    const fetchTeamData = async () => {
+      const data = await fetchData("team");
+      setTeamMembers(data);
+    };
+    fetchTeamData();
+  }, []);
+
   return (
     <section className="team-area space fix">
       <div className="team-wrap style1">

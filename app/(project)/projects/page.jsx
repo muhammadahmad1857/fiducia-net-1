@@ -24,7 +24,7 @@ export default function Page() {
             <div className="container">
               <div className="page-heading">
                 <h1 className="wow fadeInUp" data-wow-delay=".3s">
-                  Project 01
+                  Projects
                 </h1>
                 <ul
                   className="breadcrumb-items wow fadeInUp"

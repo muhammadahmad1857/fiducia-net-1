@@ -1,3 +1,4 @@
+"use client";
 import Footer1 from "@/components/footers/Footer1";
 import Header1 from "@/components/headers/Header1";
 import HeaderTop from "@/components/headers/HeaderTop";
@@ -7,10 +8,9 @@ import BlogDetails from "@/components/otherPages/blog/BlogDetails";
 import Link from "next/link";
 import NotFound from "@/components/otherPages/NotFound";
 import { client } from "@/sanity/lib/client";
-export const metadata = {
-  title: "Blog Details || Fiducia net",
-  description: "Fiducia Net || Your technology companion",
-};
+import { useState, useEffect } from "react";
+
+
 const fetchData = async (id) => {
   const data = await client.fetch(
     `
@@ -32,10 +32,17 @@ const fetchData = async (id) => {
   return data;
 };
 
-export default async function Page({ params }) {
-  const blogItem = await fetchData(params.id);
-  console.log("id", params.id);
-  console.log("blog", blogItem);
+export default function Page({ params }) {
+  const [blogItem, setBlogItem] = useState(null);
+
+  useEffect(() => {
+    const fetchBlogItem = async () => {
+      const data = await fetchData(params.id);
+      setBlogItem(data);
+    };
+    fetchBlogItem();
+  }, [params.id]);
+
   return (
     <>
       <HeaderTop />

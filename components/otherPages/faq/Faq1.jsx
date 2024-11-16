@@ -1,18 +1,28 @@
+"use client";
+import { useEffect, useState } from "react";
 import { fetchData } from "@/data/sanityData";
-import React from "react";
 import NoData from "../noData";
 
-const Faq1 = async ({ data }) => {
-  let faqData;
-  if (!data) {
-    faqData = await fetchData("faqs");
-  }
-  else{
-    faqData = data;
-  }
+const Faq1 = ({ data }) => {
+  const [faqData, setFaqData] = useState([]);
+
+  useEffect(() => {
+    const fetchFaqData = async () => {
+      if (!data) {
+        const fetchedData = await fetchData("faqs");
+        setFaqData(fetchedData);
+      } else {
+        setFaqData(data);
+      }
+    };
+
+    fetchFaqData();
+  }, [data]);
+
   if (faqData.length === 0) {
     return <NoData />;
   }
+
   return (
     <div className="accordion" id="accordion">
       {faqData.map((item, index) => (

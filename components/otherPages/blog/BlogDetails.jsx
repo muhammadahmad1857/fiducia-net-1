@@ -1,7 +1,6 @@
 import React from "react";
 import Sidebar from "./Sidebar";
-import Comments from "./Comments";
-import CommentForm from "./CommentForm";
+
 import Image from "next/image";
 import { PortableText } from "next-sanity";
 import { urlFor } from "@/sanity/lib/image";

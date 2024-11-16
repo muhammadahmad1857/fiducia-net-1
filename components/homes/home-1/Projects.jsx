@@ -12,21 +12,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 export default function Projects() {
   const [projects, setProjects] = useState([]);
-  const swiperOptions = {
-    loop: true,
-    breakpoints: {
-      0: { slidesPerView: 1 },
-      576: { slidesPerView: 1, centeredSlides: true },
-      768: { slidesPerView: 2 },
-      992: { slidesPerView: 3 },
-      1200: { slidesPerView: 4 },
-    },
-    modules: [Navigation],
-    navigation: {
-      prevEl: ".snbp1",
-      nextEl: ".snbn1",
-    },
-  };
 
   useEffect(() => {
     const fetchProjectsData = async () => {
@@ -111,11 +96,24 @@ export default function Projects() {
             data-wow-delay=".3s"
           >
             <Swiper
-              // spaceBetween={30}
+              spaceBetween={30}
               className="swiper gt-slider"
-              // style={{ overflow: "clip" }}
+              style={{ overflow: "clip" }}
               id="projectSlider1"
-              {...swiperOptions}
+              loop={true}
+              breakpoints={{
+                0: { slidesPerView: 1 },
+                576: { slidesPerView: 1, centeredSlides: true },
+                768: { slidesPerView: 2 },
+                992: { slidesPerView: 3 },
+                1200: { slidesPerView: 4 },
+              }}
+              onSwiper={(swiper) => console.log("Swiper instance:", swiper)}
+              modules={[Navigation]}
+              navigation={{
+                prevEl: ".snbp1",
+                nextEl: ".snbn1",
+              }}
             >
               {projects?.map((slide) => (
                 <SwiperSlide className="swiper-slide" key={slide.slug.current}>
